@@ -47,5 +47,9 @@ jobs:
           key: ${{secrets.SSH_KEY}}
           source: ".,!node_modules"
           target: "~/app/gofinances-backend/"
-
+          script: |
+            cd ~/app/gofinances-backend/
+            yarn
+            ./node_modules/.bin/typeorm migration:run
+            pm2 restart gofinances-api
 
